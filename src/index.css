@@ -1,3 +1,8 @@
+:root {
+  --black: #333;
+  --white: #fff;
+  --gray: rgb(128, 128, 128);
+}
 
 * {
   margin: 0;

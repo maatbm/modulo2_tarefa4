@@ -1,0 +1,13 @@
+footer{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: var(--black);
+    padding: 2rem;
+    text-align: center;
+}
+
+footer h2{
+    color: var(--white);
+}
