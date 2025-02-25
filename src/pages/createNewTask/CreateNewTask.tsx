@@ -2,10 +2,25 @@ import "./createNewTaskStyle.css";
 import { Footer } from "../../components/index";
 
 export function CreateNewTask() {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formData = new FormData(event.target as HTMLFormElement);
+    const task = {
+      title: formData.get("taskTitle") as string,
+      description: formData.get("taskDescription") as string,
+      date: formData.get("taskDate") as string,
+      completed: false as boolean,
+    };
+
+    const form = event.target as HTMLFormElement;
+    form.reset();
+    alert("Tarefa criada com sucesso!");
+  }
+
   return (
     <>
       <div className="formContainer">
-        <form method="POST" id="taskForm">
+        <form method="POST" id="taskForm" onSubmit={handleSubmit}>
           <h2>Nova tarefa</h2>
           <div className="inputContainer">
             <label htmlFor="taskTitle">Título</label>
@@ -21,7 +36,7 @@ export function CreateNewTask() {
               <input type="date" id="taskDate" name="taskDate" required />
             </div>
             <div className="buttonContainer">
-              <button type="submit" className="buttonSubmit">Cadastrar</button>
+              <button type="submit" className="buttonSubmit">Criar tarefa</button>
             </div>
           </div>
         </form>
