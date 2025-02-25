@@ -2,6 +2,7 @@
   --black: #333;
   --white: #fff;
   --gray: rgb(128, 128, 128);
+  --white-gray: rgb(236, 236, 236);
 }
 
 * {

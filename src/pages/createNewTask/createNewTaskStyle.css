@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
+
+* {
+  font-family: "Quicksand", sans-serif;
+  color: var(--white);
+}
+
+.formContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--white-gray);
+}
+
+form {
+  width: 40%;
+  padding: 0.7rem;
+  border-radius: 1rem;
+  border: solid 1px var(--black);
+  background-color: var(--gray);
+  box-shadow: 0px 0px 20px var(--black);
+}
+
+form h2 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bolder;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+
+.inputContainer label {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+#taskTitle {
+  outline: none;
+  font-size: 1.2rem;
+  text-align: center;
+  background: none;
+  border: none;
+  border-bottom: solid 2px var(--black);
+}
+
+#taskDescription {
+  max-width: 100%;
+  min-width: 100%;
+  min-height: 200px;
+  max-height: 200px;
+  border-radius: 0.5rem;
+  color: var(--black);
+  padding: 0.3rem;
+  font-size: 1.2rem;
+  border: solid 2px var(--black);
+}
+
+.dateSubmitContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#taskDate {
+  color: var(--black);
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  font-size: 1.2rem;
+  border: solid 2px var(--black);
+}
+
+#dateLabel {
+  text-align: center;
+}
+
+.buttonContainer {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonSubmit {
+  width: 50%;
+  padding: 0.5rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: var(--black);
+  color: var(--white);
+  cursor: pointer;
+  box-shadow: 0px 0px 15px var(--black);
+  transition: 0.5s;
+}
+
+.buttonSubmit:hover {
+  background-color: var(--white);
+  color: var(--black);
+}
