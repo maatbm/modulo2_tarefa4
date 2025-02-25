@@ -1,10 +1,17 @@
 import "./createNewTaskStyle.css";
 import { Footer } from "../../components/index";
+import { Navigate } from "react-router-dom";
+import { TaskContext } from "../../contexts/TaskContext";
+import { useContext, useState } from "react";
 
 export function CreateNewTask() {
+  const { addTask } = useContext(TaskContext);
+  const [redirect, setRedirect] = useState(false);
+
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.target as HTMLFormElement);
+
     const task = {
       title: formData.get("taskTitle") as string,
       description: formData.get("taskDescription") as string,
@@ -12,9 +19,15 @@ export function CreateNewTask() {
       completed: false as boolean,
     };
 
+    addTask(task);
+    setRedirect(true);
+
     const form = event.target as HTMLFormElement;
     form.reset();
     alert("Tarefa criada com sucesso!");
+    if (redirect) {
+      return <Navigate to="/" replace />;
+    }
   }
 
   return (
