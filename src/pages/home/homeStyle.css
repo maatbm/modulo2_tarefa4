@@ -42,3 +42,14 @@ header img {
   width: 4rem;
   justify-self: end;
 }
+
+main {
+  padding: 1rem;
+  padding-top: 6rem;
+  color: black;
+  display: grid;
+}
+
+.taskContainer {
+  color: black;
+}
