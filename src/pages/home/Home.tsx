@@ -4,6 +4,7 @@ import logo from '../../assets/home/headerLogo.png';
 import { Footer } from '../../components/index';
 import { TaskContext } from '../../contexts/TaskContext';
 import { useContext, useEffect, useState } from 'react';
+import deleteicon from '../../assets/createTask/delete.png'
 
 export function Home() {
   const { tasks } = useContext(TaskContext);
@@ -22,13 +23,24 @@ export function Home() {
         <img alt='Logo' src={logo}></img>
       </header>
       <main>
-        <div className='taskContainer'>
-            <h2>Titulo</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, laboriosam saepe! Sint ab fugit, itaque recusandae laudantium ad voluptate laborum corrupti voluptatem, fuga earum inventore minus cumque eaque nostrum sunt.</p>
-            <p>21/10/2007</p>
-            <input type="checkbox" />
+      {taskList.map((task) => (
+        <div className='taskContainer' key={task.id}>
+          <h2>{task.title}</h2>
+          <p>{task.description}</p>
+          <p className='dataDisplay'>Data final: {task.date}</p>
+          <div className='taskButtons'>
+            <div className='checkboxContainer'>
+              <input type='checkbox' id={`taskCheckbox${task.id}`} /> 
+              <label htmlFor={`taskCheckbox${task.id}`}>Concluída</label> 
+            </div>
+            <div className='deleteContainer'>
+              <button id='deleteButton'>
+                <img src={deleteicon} alt='Delete icon' />
+              </button>
+            </div>
+          </div>
         </div>
-        
+      ))}        
       </main>
       <Footer />
     </>
