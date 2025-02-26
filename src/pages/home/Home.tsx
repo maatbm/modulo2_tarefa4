@@ -4,15 +4,14 @@ import logo from '../../assets/home/headerLogo.png';
 import { Footer } from '../../components/index';
 import { TaskContext} from '../../contexts/TaskContext';
 import { useContext, useEffect, useState } from 'react';
-import deleteIcon from '../../assets/home/delete.png';
+import { Task } from '../../components/index';
 
 export function Home() {
-  const { tasks, deleteTask, toggleTaskCompleted } = useContext(TaskContext);
+  const { tasks } = useContext(TaskContext);
   const [taskList, setTaskList] = useState(tasks);
 
   useEffect(() => {
     setTaskList(tasks);
-    console.log(taskList);
   });
 
   return (
@@ -25,28 +24,14 @@ export function Home() {
       <main> 
 
       {taskList.map((task) => (
-        <div className='taskContainer' key={task.id}>
-          <h2>{task.title}</h2>
-          <p>{task.description}</p>
-          <p className='dataDisplay'>Data final: {task.date}</p>
-          <div className='taskButtons'>
-            <div className='checkboxContainer'>
-              <input
-               type='checkbox' 
-               className='taskCheckbox' 
-               id={`taskCheckbox${task.id}`} 
-               checked={task.completed} 
-               onChange={() => toggleTaskCompleted(task)}
-               /> 
-              <label htmlFor={`taskCheckbox${task.id}`}>Concluída</label> 
-            </div>
-            <div className='deleteContainer'>
-              <button id='deleteButton' onClick={() => deleteTask(task)}>
-                <img src={deleteIcon} alt='Delete icon' />
-              </button>
-            </div>
-          </div>
-        </div>
+        <Task 
+          key={task.id} 
+          id={task.id} 
+          title={task.title} 
+          description={task.description} 
+          date={task.date} 
+          completed={task.completed}
+        />
       ))}        
       
       </main>
