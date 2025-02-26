@@ -118,9 +118,9 @@ main {
   width: 40px;
 }
 
-#taskCheckbox {
-  width: 20px;
-  height: 20px;
+.taskCheckbox {
+  width: 22px;
+  height: 22px;
 }
 
 .checkboxContainer label {

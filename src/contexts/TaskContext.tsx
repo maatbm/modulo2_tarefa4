@@ -12,6 +12,7 @@ type TaskContextType = {
   tasks: Task[];
   addTask: (task: Task) => void;
   deleteTask: (task: Task) => void;
+  toggleTaskCompleted: (taskEx: Task) => void;
 };
 
 type TaskProviderProps = {
@@ -22,6 +23,7 @@ export const TaskContext = createContext<TaskContextType>({
   tasks: [],
   addTask: () => {},
   deleteTask: () => {},
+  toggleTaskCompleted: () => {}
 });
 
 export const TaskProvider = ({ children }: TaskProviderProps) => {
@@ -35,8 +37,13 @@ export const TaskProvider = ({ children }: TaskProviderProps) => {
     setTasks(tasks.filter((t) => t.id !== task.id));
   };
 
+  const toggleTaskCompleted = (taskEx: Task) => {
+    setTasks(tasks.map((task) => 
+      task.id === taskEx.id ? { ...task, completed: !task.completed } : task
+    ));
+  };
   return (
-    <TaskContext.Provider value={{ tasks, addTask, deleteTask }}>
+    <TaskContext.Provider value={{ tasks, addTask, deleteTask, toggleTaskCompleted }}>
       {children}
     </TaskContext.Provider>
   );
