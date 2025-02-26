@@ -1,0 +1,75 @@
+.taskContainer {
+    width: 100%;
+    height: fit-content;
+    background-color: var(--gray);
+    border-radius: 0.7rem;
+    padding: 0.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px var(--black);
+    gap: 0.5rem;
+    transition: 0.5s;
+  }
+  
+  .taskContainer:hover {
+    transform: scale(1.05);
+  }
+  
+  .taskContainer h2 {
+    color: var(--black);
+  }
+  
+  .taskContainer p {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  
+  .dataDisplay {
+    font-weight: bold;
+    color: var(--black);
+  }
+  
+  .taskButtons {
+    margin-top: 1.4rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .checkboxContainer {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  
+  .deleteContainer {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #deleteButton {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  #deleteButton img {
+    width: 40px;
+  }
+  
+  .taskCheckbox {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .checkboxContainer label {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }

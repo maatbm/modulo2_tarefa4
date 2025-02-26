@@ -1,124 +1,50 @@
-# Task Management Application with React and TypeScript
+# React + TypeScript + Vite
 
-A modern task management application built with React and TypeScript that enables users to create, track, and manage their tasks with an intuitive interface. The application provides a clean and responsive user experience with features for task creation, completion tracking, and task deletion.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-This application leverages React's context API for state management and React Router for navigation between views. It offers a straightforward way to organize tasks with features including task titles, descriptions, due dates, and completion status tracking. The application is built using Vite for optimal development experience and fast builds, with TypeScript for type safety and better developer experience.
+Currently, two official plugins are available:
 
-## Repository Structure
-```
-.
-├── src/                          # Source code directory
-│   ├── main.tsx                 # Application entry point
-│   ├── App.tsx                  # Root component with routing setup
-│   ├── components/              # Reusable UI components
-│   │   └── footer/             # Footer component and styles
-│   ├── contexts/               # React context definitions
-│   │   └── TaskContext.tsx     # Task management context
-│   ├── pages/                  # Application views
-│   │   ├── createNewTask/      # New task creation page
-│   │   └── home/              # Home page with task list
-│   └── routes/                 # Routing configuration
-├── vite.config.ts              # Vite build configuration
-├── tsconfig.json              # TypeScript configuration
-├── package.json               # Project dependencies and scripts
-└── eslint.config.js          # ESLint configuration
-```
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Usage Instructions
-### Prerequisites
-- Node.js (version 14 or higher)
-- npm or yarn package manager
-- Modern web browser
+## Expanding the ESLint configuration
 
-### Installation
-```bash
-# Clone the repository
-git clone <repository-url>
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-# Navigate to project directory
-cd task-management-app
+- Configure the top-level `parserOptions` property like this:
 
-# Install dependencies
-npm install
+```js
+export default tseslint.config({
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
 ```
 
-### Quick Start
-1. Start the development server:
-```bash
-npm run dev
+- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
+- Optionally add `...tseslint.configs.stylisticTypeChecked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+
+```js
+// eslint.config.js
+import react from 'eslint-plugin-react'
+
+export default tseslint.config({
+  // Set the react version
+  settings: { react: { version: '18.3' } },
+  plugins: {
+    // Add the react plugin
+    react,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended rules
+    ...react.configs.recommended.rules,
+    ...react.configs['jsx-runtime'].rules,
+  },
+})
 ```
-
-2. Open your browser and navigate to `http://localhost:5173`
-
-3. Create a new task:
-   - Click "Criar uma tarefa" button
-   - Fill in the task details
-   - Submit the form
-
-### More Detailed Examples
-
-#### Creating a Task
-```typescript
-// Example task creation
-const task = {
-  title: "Complete Project Documentation",
-  description: "Write comprehensive documentation for the project",
-  date: "2024-03-01",
-  completed: false
-};
-```
-
-#### Managing Tasks
-```typescript
-// Toggle task completion
-const toggleTaskCompleted = (task) => {
-  task.completed = !task.completed;
-};
-
-// Delete a task
-const deleteTask = (taskToDelete) => {
-  tasks = tasks.filter(task => task.id !== taskToDelete.id);
-};
-```
-
-### Troubleshooting
-
-#### Common Issues
-
-1. **Task Creation Form Not Submitting**
-   - Ensure all required fields are filled
-   - Check browser console for any JavaScript errors
-   - Verify that the date selected is valid
-
-2. **Tasks Not Persisting**
-   - The application uses in-memory storage
-   - Tasks will be reset upon page refresh
-   - Consider implementing local storage for persistence
-
-#### Development Mode
-To enable development mode with detailed logging:
-```bash
-# Start in development mode with debugging
-npm run dev -- --debug
-```
-
-## Data Flow
-
-The application follows a unidirectional data flow pattern using React Context for state management. Tasks are managed through a central TaskContext that handles all task-related operations.
-
-```ascii
-[User Interface]
-       ↕
-[TaskContext Provider]
-       ↕
-[Task Operations] → [State Updates] → [UI Updates]
-```
-
-Component Interactions:
-1. User interactions trigger task operations through TaskContext
-2. TaskContext manages the task state and provides update methods
-3. Components subscribe to TaskContext changes via useContext hook
-4. UI automatically updates when task state changes
-5. Route changes handled by React Router for navigation
-6. Form submissions trigger task creation/updates
-7. Delete operations remove tasks from central state
